@@ -1,6 +1,7 @@
 package com.teamdrt.whatsappstatussaver.ui.main.Image;
 
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
@@ -29,6 +30,7 @@ import com.teamdrt.whatsappstatussaver.ui.main.Databases.DownloadsRepository;
 import com.teamdrt.whatsappstatussaver.ui.main.Image.Adapter.ImageAdapter;
 import com.teamdrt.whatsappstatussaver.ui.main.Image.ViewModel.ImageVM;
 import com.teamdrt.whatsappstatussaver.ui.main.Video.Adapter.VideoAdapter;
+import com.teamdrt.whatsappstatussaver.ui.main.Video.VideoPopUpFragment;
 import com.teamdrt.whatsappstatussaver.ui.main.Video.ViewModel.VideoFragmnetVM;
 
 import org.apache.commons.io.FileUtils;
@@ -103,7 +105,10 @@ public class ImageFragment extends Fragment implements ImageAdapter.clicklistene
 
     @Override
     public void OnDownloadClick(int position) {
-
+        DialogFragment dialogFragment= ImagePopUpFragment.newInstance ( path.get ( position ) );
+        if (!dialogFragment.isVisible ()) {
+            dialogFragment.show ( getFragmentManager (), "1" );
+        }
     }
 
     @Override

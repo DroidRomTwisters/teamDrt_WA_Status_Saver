@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bogdwellers.pinchtozoom.ImageMatrixTouchHandler;
 import com.bumptech.glide.Glide;
 import com.teamdrt.whatsappstatussaver.R;
 
@@ -52,7 +51,6 @@ public class ImagePopUpFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_pop_up, container, false);
         imageView=view.findViewById ( R.id.imageView4 );
-        imageView.setOnTouchListener ( new ImageMatrixTouchHandler ( getContext () ) );
         Glide.with ( getContext () ).load ( mParam1 ).into(imageView);
         return view;
     }

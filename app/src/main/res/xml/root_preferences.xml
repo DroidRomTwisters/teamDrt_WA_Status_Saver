@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/whatsapp_header">
+
+        <ListPreference
+            app:defaultValue="off"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="wa_version"
+            app:title="@string/whatsapp_version"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -2,19 +2,25 @@
     <!-- Base application theme. -->
     <style name="Theme.WhatsAppStatusSaver" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/black</item>
+
+        <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/material_grey_850</item>
         <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+
+        <item name="colorSecondary">@color/purple_500</item>
+        <item name="colorSecondaryVariant">@color/material_grey_850</item>
+        <item name="colorOnSecondary">@color/purple_500</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
         <item name="android:splitMotionEvents">false</item>
         <item name="android:windowEnableSplitTouch">false</item>
+        <item name="colorControlNormal">@color/purple_500</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="customColorValue">@color/material_grey_850</item>
     </style>
 
     <style name="Theme.WhatsAppStatusSaver.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >

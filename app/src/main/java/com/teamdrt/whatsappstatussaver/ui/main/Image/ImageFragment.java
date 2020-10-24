@@ -1,12 +1,15 @@
 package com.teamdrt.whatsappstatussaver.ui.main.Image;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -22,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.teamdrt.whatsappstatussaver.BuildConfig;
 import com.teamdrt.whatsappstatussaver.R;
 import com.teamdrt.whatsappstatussaver.ui.main.Databases.AppDatabse;
 import com.teamdrt.whatsappstatussaver.ui.main.Databases.Download;
@@ -40,7 +44,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ImageFragment extends Fragment implements ImageAdapter.clicklistener {
+public class
+ImageFragment extends Fragment implements ImageAdapter.clicklistener {
 
     private ImageVM mViewModel;
 
@@ -66,7 +71,10 @@ public class ImageFragment extends Fragment implements ImageAdapter.clicklistene
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated ( savedInstanceState );
         mViewModel = new ViewModelProvider ( this ).get ( ImageVM.class );
-        mViewModel.getPath ();
+        mViewModel.getPath (getContext ());
+        adapter=new ImageAdapter ( getContext (),path,this );
+        adapter.setHasStableIds ( true );
+        videoViewlist.setAdapter(adapter);
     }
 
     @Override
@@ -76,9 +84,7 @@ public class ImageFragment extends Fragment implements ImageAdapter.clicklistene
             mViewModel = new ViewModelProvider ( this ).get ( ImageVM.class );
             mViewModel.path.observe ( getViewLifecycleOwner (), strings -> {
                 path=strings;
-                adapter=new ImageAdapter ( getContext (),strings,this );
-                adapter.setHasStableIds ( true );
-                videoViewlist.setAdapter(adapter);
+                adapter.update ( strings );
             } );
         }
     }
@@ -105,10 +111,7 @@ public class ImageFragment extends Fragment implements ImageAdapter.clicklistene
 
     @Override
     public void OnDownloadClick(int position) {
-        DialogFragment dialogFragment= ImagePopUpFragment.newInstance ( path.get ( position ) );
-        if (!dialogFragment.isVisible ()) {
-            dialogFragment.show ( getFragmentManager (), "1" );
-        }
+        viewContent ( path.get ( position ),getContext () );
     }
 
     @Override
@@ -137,6 +140,23 @@ public class ImageFragment extends Fragment implements ImageAdapter.clicklistene
             CharSequence text="Already Saved";
             Toast toast = Toast.makeText(context, text,Toast.LENGTH_SHORT);
             toast.show ();
+        }
+    }
+
+    public void viewContent(String path, Context ctx){
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.addFlags ( Intent.FLAG_GRANT_READ_URI_PERMISSION );
+        File file=new File(path);
+        Uri uri = FileProvider.getUriForFile ( ctx, BuildConfig.APPLICATION_ID + ".FileProvider", file );
+        String mimetype = ctx.getContentResolver ().getType ( uri );
+        if (mimetype == null) {
+            mimetype = "*/*";
+        }
+        intent.setDataAndType ( uri, mimetype );
+        if (intent.resolveActivity ( ctx.getPackageManager () ) != null) {
+            ctx.startActivity ( intent );
+        } else {
+            Toast.makeText ( ctx, "No app Found to handle this event", Toast.LENGTH_SHORT ).show ();
         }
     }
 }

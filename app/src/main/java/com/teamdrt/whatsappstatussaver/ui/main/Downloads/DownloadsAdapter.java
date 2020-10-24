@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +23,7 @@ import com.teamdrt.whatsappstatussaver.ui.main.Databases.AppDatabse;
 import com.teamdrt.whatsappstatussaver.ui.main.Databases.Download;
 import com.teamdrt.whatsappstatussaver.ui.main.Databases.DownloadsDao;
 import com.teamdrt.whatsappstatussaver.ui.main.Databases.DownloadsRepository;
+import com.teamdrt.whatsappstatussaver.ui.main.Image.DiffUtils.ImageDiffUtil;
 import com.teamdrt.whatsappstatussaver.ui.main.Util.GetTimeAgo;
 
 import java.io.File;
@@ -54,10 +57,9 @@ public class DownloadsAdapter extends RecyclerView.Adapter<DownloadsVh> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull DownloadsVh holder, int position) {
-
-        Glide.with(context).load ( alldownloads.get ( position ).getDownoadedPath () ).centerCrop ().into ( holder.vthumb );
         File file=new File(alldownloads.get ( position ).getDownoadedPath ());
         if (file.exists ()) {
+            Glide.with(context).load ( alldownloads.get ( position ).getDownoadedPath () ).centerCrop ().into ( holder.vthumb );
             String date1= GetTimeAgo.getTimeAgo ( alldownloads.get ( position ).getTimestamp (),context);
             holder.date.setText ( date1 );
             if (alldownloads.get ( position ).getMediaType ().equals ( "image" ))
@@ -115,6 +117,41 @@ public class DownloadsAdapter extends RecyclerView.Adapter<DownloadsVh> {
 
     }
 
+
+    @Override
+    public void onBindViewHolder(@NonNull DownloadsVh holder, int position, @NonNull List <Object> payloads) {
+        if (payloads.isEmpty ()) {
+            super.onBindViewHolder ( holder, position, payloads );
+        }else {
+            Bundle o=(Bundle)payloads.get (0);
+            for (String key:o.keySet ()){
+                switch (key){
+                    case "path":
+                        File file=new File(o.getString("path"));
+                        if (file.exists ()) {
+                            Glide.with(context).load ( o.getString("path") ).centerCrop ().into ( holder.vthumb );
+                        }else {
+                            DownloadsDao downloadsDao= AppDatabse.getInstance (context).downloadsDao ();
+                            DownloadsRepository repository=new DownloadsRepository(downloadsDao);
+                            repository.delete ( alldownloads.get ( position ) );
+                        }
+
+                    case "time":
+                        String date1= GetTimeAgo.getTimeAgo ( o.getLong(key),context);
+                        holder.date.setText ( date1 );
+
+                    case  "media":
+                        if (o.getString(key).equals ( "image" ))
+                        {
+                            holder.play.setImageResource ( R.drawable.ic_baseline_image_24 );
+                        }else {
+                            holder.play.setImageResource ( R.drawable.ic_baseline_play_circle_filled_24 );
+                        }
+                }
+            }
+        }
+    }
+
     @Override
     public int getItemCount() {
         return alldownloads.size ();
@@ -124,4 +161,13 @@ public class DownloadsAdapter extends RecyclerView.Adapter<DownloadsVh> {
     public long getItemId(int position) {
         return position;
     }
+
+    public void update(List <Download> alldownloads){
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DownloadsDiffUtil (this.alldownloads,alldownloads));
+        this.alldownloads.clear ();
+        this.alldownloads.addAll(alldownloads);
+        notifyDataSetChanged ();
+        diffResult.dispatchUpdatesTo ( this );
+    }
+
 }

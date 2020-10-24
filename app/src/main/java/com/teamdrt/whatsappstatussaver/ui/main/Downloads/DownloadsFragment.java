@@ -63,6 +63,7 @@ public class DownloadsFragment extends Fragment {
     public void init(){
         DownloadsViewModel vm= new ViewModelProvider (DownloadsFragment.this).get ( DownloadsViewModel.class );
         vm.getAllDownloads ( getContext () );
+
         vm.allDownloads.observe ( getViewLifecycleOwner (), downloads -> {
             if (downloads.size ()!=0){
                 nod.setVisibility ( View.GONE );
@@ -71,7 +72,7 @@ public class DownloadsFragment extends Fragment {
                 nod.setVisibility ( View.VISIBLE );
                 download_list.setVisibility ( View.GONE);
             }
-            adapter.addItems ( downloads );
+            adapter.update ( downloads );
         } );
     }
 

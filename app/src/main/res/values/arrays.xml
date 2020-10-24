@@ -1,0 +1,18 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Official</item>
+        <item>WhatsApp Business</item>
+        <item>GBWhatsApp</item>
+        <item>FMWhatsApp</item>
+        <item>WhatsApp Gold</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>off</item>
+        <item>wabu</item>
+        <item>gbwa</item>
+        <item>fmwa</item>
+        <item>wago</item>
+    </string-array>
+</resources>

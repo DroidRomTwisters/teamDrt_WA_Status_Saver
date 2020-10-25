@@ -48,6 +48,12 @@ public class ImageVM extends ViewModel {
             case "wago":
                 file = new File ( Environment.getExternalStorageDirectory () + File.separator + "WhatsApp Gold/Media/.Statuses" );
                 break;
+            case "yowa":
+                file = new File ( Environment.getExternalStorageDirectory () + File.separator + "YoWhatsApp/Media/.Statuses" );
+                break;
+            case "wapl":
+                file = new File ( Environment.getExternalStorageDirectory () + File.separator + "WhatsApp Plus/Media/.Statuses" );
+                break;
 
         }
 

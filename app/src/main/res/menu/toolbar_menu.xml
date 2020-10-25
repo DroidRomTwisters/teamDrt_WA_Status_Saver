@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nm"
-        android:icon="@drawable/ic_night_mode"
-        android:title="Night Mode"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="Setting"

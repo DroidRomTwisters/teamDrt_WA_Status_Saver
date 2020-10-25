@@ -10,12 +10,16 @@
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
-    <string name="whatsapp_header">WhatsApp Version</string>
+    <string name="whatsapp_header">WhatsApp Version(Requires Restart)</string>
+    <string name="ui_mode">Ui Mode(Requires Restart)</string>
+    <string name="security">Security</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
     <string name="whatsapp_version">WhatsApp Version</string>
+    <string name="ui_mode_title">Ui Mode</string>
+    <string name="security_title">Enable App Lock</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>

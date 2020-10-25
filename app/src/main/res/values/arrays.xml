@@ -6,6 +6,8 @@
         <item>GBWhatsApp</item>
         <item>FMWhatsApp</item>
         <item>WhatsApp Gold</item>
+        <item>YoWhatsApp</item>
+        <item>WhatsApp plus</item>
     </string-array>
 
     <string-array name="reply_values">
@@ -14,5 +16,21 @@
         <item>gbwa</item>
         <item>fmwa</item>
         <item>wago</item>
+        <item>yowa</item>
+        <item>wapl</item>
     </string-array>
+
+
+    <string-array name="ui_mode_entries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Automatic</item>
+    </string-array>
+
+    <string-array name="ui_mode_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>auto</item>
+    </string-array>
+
 </resources>

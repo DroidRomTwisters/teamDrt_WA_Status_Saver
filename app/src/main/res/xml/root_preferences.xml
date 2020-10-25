@@ -4,6 +4,7 @@
     <PreferenceCategory app:title="@string/whatsapp_header">
 
         <ListPreference
+            app:icon="@drawable/ic_icons8_whatsapp"
             app:defaultValue="off"
             app:entries="@array/reply_entries"
             app:entryValues="@array/reply_values"
@@ -12,5 +13,27 @@
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ui_mode">
+        <ListPreference
+            app:icon="@drawable/ic_brightness"
+            android:defaultValue="auto"
+            app:entries="@array/ui_mode_entries"
+            android:entryValues="@array/ui_mode_values"
+            app:key="ui_mode"
+            app:title="@string/ui_mode_title"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/security"
+        >
+        <SwitchPreferenceCompat
+            app:icon="@drawable/ic_baseline_lock_24"
+            app:key="security"
+            app:title="@string/security_title"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

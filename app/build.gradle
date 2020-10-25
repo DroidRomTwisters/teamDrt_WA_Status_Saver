@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.1"
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -93,6 +93,9 @@ dependencies {
 
 
     implementation "androidx.work:work-runtime:$versions_work"
+
+    def biometric_version= '1.0.1'
+    implementation "androidx.biometric:biometric:$biometric_version"
 
 
 }

@@ -2,7 +2,6 @@ package com.teamdrt.whatsappstatussaver.ui.main.Image;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
@@ -33,9 +32,6 @@ import com.teamdrt.whatsappstatussaver.ui.main.Databases.DownloadsDao;
 import com.teamdrt.whatsappstatussaver.ui.main.Databases.DownloadsRepository;
 import com.teamdrt.whatsappstatussaver.ui.main.Image.Adapter.ImageAdapter;
 import com.teamdrt.whatsappstatussaver.ui.main.Image.ViewModel.ImageVM;
-import com.teamdrt.whatsappstatussaver.ui.main.Video.Adapter.VideoAdapter;
-import com.teamdrt.whatsappstatussaver.ui.main.Video.VideoPopUpFragment;
-import com.teamdrt.whatsappstatussaver.ui.main.Video.ViewModel.VideoFragmnetVM;
 
 import org.apache.commons.io.FileUtils;
 

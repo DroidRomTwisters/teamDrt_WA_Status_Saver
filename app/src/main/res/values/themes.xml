@@ -17,7 +17,7 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
+        <item name="android:windowActivityTransitions">true</item>
         <item name="customColorValue">@color/white</item>
     </style>
 
@@ -37,8 +37,8 @@
     <style name="Theme.WhatsAppStatusSaver.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="WindowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
     </style>
 
 

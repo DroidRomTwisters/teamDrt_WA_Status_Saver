@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.teamdrt.whatsappstatussaver">
 
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -12,6 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatsAppStatusSaver">
+        <activity android:name=".MainActivity2" android:theme="@style/Theme.WhatsAppStatusSaver.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.main.SettingsActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -23,11 +31,7 @@
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:theme="@style/Theme.WhatsAppStatusSaver.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <provider
